@@ -10,9 +10,17 @@
     <div class="filter">
         <form action="#" class="filter-form">
             <fieldset class="filter-row">
-                <input type="text"  >
-                <input type="text" >
-                <input type="text" >
+                <select class="input-type">
+                    <option class="input-type__value" value="text">Text field</option>
+                    <option class="input-type__value" value="number">Number field</option>
+                </select>
+                <select class="input-operation">
+                    <option class="input-operation__value" value="Containing">Containing</option>
+                    <option class="input-operation__value" value="Exactly matching">Exactly matching</option>
+                    <option class="input-operation__value" value="Begins with">Begins with</option>
+                    <option class="input-operation__value" value="Ends withText field">Ends withText field</option>
+                </select>
+                <input class="input-text" type="text" >
             </fieldset>
             <fieldset>
                 <button>add contribution</button>
