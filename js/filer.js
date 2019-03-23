@@ -21,7 +21,7 @@ Filter.prototype.showInfo = function (){
         if (type === "Text field"){
             infObj.text.push(rowObj);
         } else if (type === "Number field"){
-            infObj.number.push(RowObj);
+            infObj.number.push(rowObj);
         }
     }
     
