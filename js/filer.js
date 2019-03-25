@@ -9,6 +9,11 @@ Filter.prototype.addRow = function (row){
     this.content.push(row)
 }
 
+Filter.prototype.getRowNumber = function(){
+    var filter = document.getElementById(this.id);
+    return filter.querySelectorAll(".filter-row").length;
+}
+
 Filter.prototype.render = function(){
     
     //Создание главного блока
@@ -21,18 +26,18 @@ Filter.prototype.render = function(){
 
     var addButton = document.createElement("button");
     addButton.className = "add-button";
-    addButton.innerHTML = "add contribution";
+    addButton.innerHTML = "Add contribution";
 
     var actButtField = document.createElement("div");
     actButtField.className = "action-fieldset";
 
     var applyButton = document.createElement("button");
     applyButton.className = "apply-button";
-    applyButton.innerHTML = "apply";
+    applyButton.innerHTML = "Apply";
 
     var clearButton = document.createElement("button");
     clearButton.className = "clear-button";
-    clearButton.innerHTML = "clear filter";
+    clearButton.innerHTML = "Clear filter";
 
     addButtField.appendChild(addButton);
     actButtField.appendChild(applyButton);
@@ -45,10 +50,37 @@ Filter.prototype.render = function(){
 
 Filter.prototype.showInfo = function (){
     
+    var rowList = document.querySelectorAll("#"+this.id+" .filter-row");
     var infObj = {
         text:[],
         number:[]
     };
+
+    for (var i = 0; i < rowList.length; i++){
+        
+        var row = rowList[i];
+        var firstSelect = row.firstChild;
+        var secondSelect = firstSelect.nextSibling;
+        var input = secondSelect.nextSibling;
+        
+        var rowObj;
+        if (firstSelect.value === "Text field"){
+            rowObj = {
+                operation: secondSelect.value,
+                value: input.value
+            }
+            infObj.text.push(rowObj);
+        }
+
+        if (firstSelect.value === "Number field"){
+            rowObj = {
+                operation: secondSelect.value,
+                value: input.value
+            }
+            infObj.number.push(rowObj);
+        }
+
+    }
     
     var content = this.content;
     for (var i = 0; i < content.length; i++){
